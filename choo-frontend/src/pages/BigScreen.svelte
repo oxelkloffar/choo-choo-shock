@@ -1,6 +1,7 @@
 <script>
     import {onMount} from 'svelte'
     import {fade} from 'svelte/transition';
+    import {getWsUrl} from "../hostname";
 
     let status = "";
     let ws = null;
@@ -8,7 +9,7 @@
     let clients = {};
 
     onMount(() => {
-        ws = new WebSocket('ws://' + window.location.hostname + ':8080/ws');
+        ws = new WebSocket(getWsUrl() + '/ws');
         ws.onmessage = function (data) {
             const message = JSON.parse(data.data);
             console.log("received: ", message);

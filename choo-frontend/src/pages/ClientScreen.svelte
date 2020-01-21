@@ -1,6 +1,7 @@
 <script>
     import {onMount} from 'svelte'
     import uuidv4 from 'uuid/v4'
+    import {getWsUrl} from "../hostname";
 
 
     let ws = null;
@@ -8,7 +9,7 @@
     let uuid = null;
     onMount(() => {
         uuid = uuidv4();
-        ws = new WebSocket('ws://' + window.location.hostname + ':8080/ws');
+        ws = new WebSocket(getWsUrl() + '/ws');
         ws.onmessage = function (data) {
             showGreeting(data.data)
         };
