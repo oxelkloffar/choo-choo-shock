@@ -33,8 +33,8 @@ jobs:
             ssh richodemus@richodemus.com << 'EOF'
               cd ~/choo/choo-choo-shock
               git pull
-              docker-compose build
-              docker-compose down
+              docker rm -f choo-frontend
+              docker rm -f choo-backend
               docker-compose up -d
               docker system prune -f
             EOF
