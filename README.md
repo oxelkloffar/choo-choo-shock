@@ -1,4 +1,5 @@
 # Choo Choo Shock
+Build status: [![CircleCI](https://circleci.com/gh/oxelkloffar/choo-choo-shock/tree/master.svg?style=svg)](https://circleci.com/gh/oxelkloffar/choo-choo-shock/tree/master)
 
 
 ## Ideas

@@ -1,0 +1,40 @@
+version: 2.0
+workflows:
+  version: 2
+  build:
+    jobs:
+      - build
+      - deploy:
+          requires:
+            - build
+          filters:
+            branches:
+              only: master
+jobs:
+  build:
+    machine:
+      enabled: true
+    steps:
+      - checkout
+      - run:
+          name: Build docker images
+          command: ./build.sh
+          no_output_timeout: 30m
+  deploy:
+    machine:
+      enabled: true
+    steps:
+      - add_ssh_keys:
+          fingerprints:
+            - "00:aa:c3:0b:30:bd:7c:6e:18:03:6d:7b:a4:84:b7:45"
+      - run:
+          command: |
+            echo $KNOWN_HOST >> ~/.ssh/known_hosts
+            ssh richodemus@richodemus.com << 'EOF'
+              cd ~/choo/choo-choo-shock
+              git pull
+              docker-compose build
+              docker-compose down
+              docker-compose up -d
+              docker system prune -f
+            EOF
