@@ -1,4 +1,4 @@
-import SplashScreen from './pages/SpashScreen.svelte'
+import SplashScreen from './pages/SplashScreen.svelte'
 import BigScreen from './pages/BigScreen.svelte'
 import ClientScreen from './pages/ClientScreen.svelte'
 
