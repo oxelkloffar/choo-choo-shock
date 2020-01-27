@@ -1,6 +1,1 @@
-*
-!gradlew
-!gradle
-!build.gradle.kts
-!settings.gradle.kts
-!src
+*.bat
