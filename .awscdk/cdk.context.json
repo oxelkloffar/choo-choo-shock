@@ -1,0 +1,22 @@
+{
+  "@aws-cdk/core:enableStackNameDuplicates": "true",
+  "aws-cdk:enableDiffNoFail": "true",
+  "availability-zones:account=393495305352:region=eu-central-1": [
+    "eu-central-1a",
+    "eu-central-1b",
+    "eu-central-1c"
+  ],
+  "hosted-zone:account=393495305352:domainName=aourell.se:region=eu-central-1": {
+    "Id": "/hostedzone/Z2G7JLK4FKZSEW",
+    "Name": "aourell.se."
+  },
+  "availability-zones:account=393495305352:region=eu-north-1": [
+    "eu-north-1a",
+    "eu-north-1b",
+    "eu-north-1c"
+  ],
+  "hosted-zone:account=393495305352:domainName=aourell.se:region=eu-north-1": {
+    "Id": "/hostedzone/Z2G7JLK4FKZSEW",
+    "Name": "aourell.se."
+  }
+}
