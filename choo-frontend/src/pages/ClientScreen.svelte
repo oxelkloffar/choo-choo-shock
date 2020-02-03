@@ -22,8 +22,6 @@
             status = "connected";
         };
 
-        // setConnected(true)
-
         function disconnect() {
             if (ws != null) {
                 ws.close()
@@ -31,16 +29,15 @@
             console.log("Disconnected")
         }
 
-        // function sendName() {
-        //     ws.send($("#name").val())
-        // }
-
         function showGreeting(message) {
             console.log("received: " + message)
         }
     })
 
-    function tap() {
+    function tap(e) {
+        e.preventDefault();
+        e.stopPropagation();
+
         if (!ws || ws.readyState !== WebSocket.OPEN) {
             status = "no ws"
         }
@@ -50,7 +47,21 @@
             id: uuid,
         }));
     }
+
+    function stopDrag(e) {
+        e.preventDefault();
+        e.stopPropagation();
+    }
 </script>
+
+<style>
+button {
+    display: block;
+    width: 90vw;
+    height: 20vh;
+}
+</style>
+
 <h1>Tiny little mobile phone</h1>
-<button on:click={tap}>Let me tap it!</button>
+<button on:click={tap} on:touchmove={stopDrag}>Pump it!</button>
 <p>{status}</p>
