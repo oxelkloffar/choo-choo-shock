@@ -1,10 +1,11 @@
-const cdk = require('@aws-cdk/core')
+const cdk = require("@aws-cdk/core")
 const ec2 = require("@aws-cdk/aws-ec2")
 const ecs = require("@aws-cdk/aws-ecs")
 const ecs_patterns = require("@aws-cdk/aws-ecs-patterns")
+const elb = require("@aws-cdk/aws-elasticloadbalancingv2")
 const cert = require("@aws-cdk/aws-certificatemanager")
 const route53 = require("@aws-cdk/aws-route53")
-const path = require('path')
+const path = require("path")
 
 class ChooChooStack extends cdk.Stack {
 
@@ -87,7 +88,7 @@ class ChooChooStack extends cdk.Stack {
       memoryLimitMiB: memoryLimitMiB, // Default is 512
       desiredCount: loadBalancedInstances, // Default is 1
       taskImageOptions: {
-        image: ecs.ContainerImage.fromAsset(path.resolve(__dirname, '../../choo-backend')),
+        image: ecs.ContainerImage.fromAsset(path.resolve(__dirname, "../../choo-backend")),
         containerPort: exposedContainerPort
       },
       publicLoadBalancer: true, // Default is false
@@ -111,7 +112,7 @@ class ChooChooStack extends cdk.Stack {
       memoryLimitMiB: memoryLimitMiB, // Default is 512
       desiredCount: loadBalancedInstances, // Default is 1
       taskImageOptions: {
-        image: ecs.ContainerImage.fromAsset(path.resolve(__dirname, '../../choo-frontend')),
+        image: ecs.ContainerImage.fromAsset(path.resolve(__dirname, "../../choo-frontend")),
         containerPort: exposedContainerPort
       },
       publicLoadBalancer: true, // Default is false
@@ -119,6 +120,17 @@ class ChooChooStack extends cdk.Stack {
       domainZone: this.hostedZone,
       certificate: this.frontendCertificate
     })
+    
+    // Forward traffic from 80 -> 443
+    this.frontendService.loadBalancer.addListener("ChooRedirectFrontend80To443", {
+      protocol: elb.ApplicationProtocol.HTTP,
+      port: 80
+    })
+      .addRedirectResponse("ChooRedirect80To443", {
+        statusCode: "HTTP_301",
+        port: "443",
+        protocol: "HTTPS"
+      })
   }
 }
 
