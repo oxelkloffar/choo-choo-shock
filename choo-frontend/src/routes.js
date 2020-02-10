@@ -1,19 +1,29 @@
-import SplashScreen from './pages/SplashScreen.svelte'
-import BigScreen from './pages/BigScreen.svelte'
-import ClientScreen from './pages/ClientScreen.svelte'
+import LandingPage from './pages/LandingPage.svelte'
+import TvGamePage from './pages/tv/GamePage.svelte'
+import MobileGamePage from './pages/mobile/GamePage.svelte'
+import MobileLobbyPage from './pages/mobile/LobbyPage.svelte'
+import TvLobbyPage from './pages/tv/LobbyPage.svelte'
 
 const routes = [
     {
         name: '/',
-        component: SplashScreen
+        component: LandingPage
     },
     {
-        name: 'big',
-        component: BigScreen
+        name: 'tv/game',
+        component: TvGamePage
     },
     {
-        name: 'client',
-        component: ClientScreen
+        name: 'mobile/game',
+        component: MobileGamePage
+    },
+    {
+        name: 'tv/lobby',
+        component: TvLobbyPage
+    },
+    {
+        name: 'mobile/lobby',
+        component: MobileLobbyPage
     },
 ];
 

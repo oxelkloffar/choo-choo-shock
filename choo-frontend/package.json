@@ -8,7 +8,7 @@
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^11.0.0",
-    "@rollup/plugin-node-resolve": "^6.0.0",
+    "@rollup/plugin-node-resolve": "^7.0.0",
     "rollup": "^1.20.0",
     "rollup-plugin-livereload": "^1.0.0",
     "rollup-plugin-svelte": "^5.0.3",
@@ -17,7 +17,6 @@
   },
   "dependencies": {
     "sirv-cli": "^0.4.4",
-    "svelte-router-spa": "^5.3.3",
-    "uuid": "^3.4.0"
+    "svelte-router-spa": "^5.3.3"
   }
 }
