@@ -33,6 +33,7 @@ jobs:
             ssh richodemus@richodemus.com << 'EOF'
               cd ~/choo/choo-choo-shock
               git pull
+              docker-compose build
               docker rm -f choo-frontend
               docker rm -f choo-backend
               docker-compose --file docker-compose-richodemus.com.yaml up -d
