@@ -19,6 +19,7 @@ fun main(args: Array<String>) {
 @EnableWebSocket
 class WebSocketConfig : WebSocketConfigurer {
 	override fun registerWebSocketHandlers(registry: WebSocketHandlerRegistry) {
-		registry.addHandler(SocketHandler(), "/ws").setAllowedOrigins("*")
+		// todo use proper dependency injection for EventSerde
+		registry.addHandler(SocketHandler(EventSerde()), "/ws").setAllowedOrigins("*")
 	}
 }

@@ -23,6 +23,10 @@ dependencies {
 	testImplementation("org.springframework.boot:spring-boot-starter-test") {
 		exclude(group = "org.junit.vintage", module = "junit-vintage-engine")
 	}
+	implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.10.+")
+	implementation("io.github.microutils:kotlin-logging:1.7.8")
+	testImplementation("junit:junit:4.13")
+	testImplementation("org.assertj:assertj-core:3.15.0")
 }
 
 tasks.withType<Test> {
